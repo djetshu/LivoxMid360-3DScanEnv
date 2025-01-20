@@ -40,8 +40,14 @@ ENV GAZEBO_MODEL_PATH=/usr/share/gazebo-11/models:$GAZEBO_MODEL_PATH \
 # Run rosdep update
 RUN rosdep update
 
+# Set up
+RUN apt-get update
+
 # Update bashrc
 RUN echo 'source "/opt/ros/$ROS_DISTRO/setup.bash"' >> ~/.bashrc
+
+# Set the default working directory
+WORKDIR /livox_mid_360/
 
 # Copy the ros_entrypoint.sh script and set permissions
 COPY docker/ros_entrypoint.sh /ros_entrypoint.sh
