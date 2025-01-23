@@ -7,6 +7,7 @@ RUN apt update && apt install -y \
     vim \
     gedit \
     tmux \
+    net-tools \
     pip \
     libsdl1.2-dev \
     ros-humble-ros2-control \
