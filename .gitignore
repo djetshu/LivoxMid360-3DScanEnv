@@ -1,0 +1,6 @@
+.vscode
+# Ignore all content inside the rosbag folder
+livox_mid_360/src/rosbag/*
+
+# Allow .gitkeep file to be tracked inside the rosbag folder
+!livox_mid_360/src/rosbag/.gitkeep
