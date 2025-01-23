@@ -36,7 +36,8 @@ Ensure the following requirements are met before proceeding:
  
 3. **Run the Docker Container**  
    ```bash  
-   # Enable permissions for graphics/video  
+   # Enable permissions for graphics/video
+   # (Optional: Already in run_docker.sh)
    xhost +local:root  
  
    # Start the Docker container  
@@ -53,8 +54,11 @@ Before running, ensure all configurations are properly set (refer to [Set Up and
    ```bash  
    cd /livox_mid_360/livox_mid_360_ws  
    ```  
- 
-2. Source the workspace:  
+2. Compile the ros workspace:  
+   ```bash  
+   colcon build 
+   ```
+3. Source the workspace:  
    ```bash  
    source install/setup.bash  
    ```  
@@ -75,8 +79,10 @@ To perform mapping using FastLIO integrated with the Livox MID360:
 If you only need to run the Livox MID360 ROS driver for data visualization or testing:  
  
 1. Launch the required nodes:  
-   ```bash  
-   ros2 launch livox_ros_driver2 rviz_MID360_launch.py  
+   ```bash
+   # To show Data in Rviz2
+   ros2 launch livox_ros_driver2 rviz_MID360_launch.py
+   # To get data in Livox custom message
    ros2 launch livox_ros_driver2 msg_MID360_launch.py  
    ```  
  
