@@ -4,23 +4,8 @@ set -e
 # setup ros2 environment
 source "/opt/ros/$ROS_DISTRO/setup.bash" --  >> /root/.bashrc
 
-# additional environment setup from /base_lunar_builder_ws/install
-# source "/lunar_builder_2025/base_lunar_builder_ws/install/setup.bash" -- || true  >> /root/.bashrc
-
-# ----- Livox-SDK2 --------
-cd /livox_mid_360/livox_mid_360_ws/src/Livox-SDK2/build
-cmake .. && make -j
-sudo make install
-
-# ----- FAST-LIO --------
-cd /livox_mid_360/livox_mid_360_ws
-rosdep install --from-paths src --ignore-src -y
-#colcon build
-
-# ----- livox-ros-driver2 -------
-cd /livox_mid_360/livox_mid_360_ws/src/livox_ros_driver2
-source /opt/ros/humble/setup.sh
-./build.sh humble
+# additional environment setup from /livox_mid_360_ws/install
+source "/livox_mid_360/livox_mid_360_ws/install/setup.bash" -- || true  >> /root/.bashrc
 
 # ----- source --------
 cd /livox_mid_360/livox_mid_360_ws
@@ -31,6 +16,6 @@ if [[ $- == *i* ]]; then
     source ~/.bashrc
 fi
 
-echo "==============FAST-LIO MID 360 ROS2 Docker Env Ready================"
+echo -e "\033[0;32m==============FAST-LIO MID 360 ROS2 Docker Env Ready================\033[0m"
 
 exec "$@"

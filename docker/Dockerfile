@@ -41,14 +41,37 @@ ENV GAZEBO_MODEL_PATH=/usr/share/gazebo-11/models:$GAZEBO_MODEL_PATH \
 # Run rosdep update
 RUN rosdep update
 
+# Copy livox_mid_360 and pre-build it
+COPY livox_mid_360/ /livox_mid_360/livox_mid_360_ws/
+
 # Set up
 RUN apt-get update
+
+# Change working directory to Livox-SDK2 build folder
+WORKDIR /livox_mid_360/livox_mid_360_ws/src/Livox-SDK2/
+
+# Build and install Livox-SDK2
+RUN mkdir -p build && cd build && \
+    cmake .. && \
+    make -j$(nproc) && \
+    make install
+
+# Install FAST-LIO
+WORKDIR /livox_mid_360/livox_mid_360_ws/
+RUN rosdep install --from-paths src --ignore-src -y
+
+# Install livox-ros-driver2
+WORKDIR /livox_mid_360/livox_mid_360_ws/src/livox_ros_driver2/
+
+# Source ROS environment and build the base workspace
+RUN bash -c "source /opt/ros/humble/setup.bash && \
+    ./build.sh humble"
 
 # Update bashrc
 RUN echo 'source "/opt/ros/$ROS_DISTRO/setup.bash"' >> ~/.bashrc
 
 # Set the default working directory
-WORKDIR /livox_mid_360/
+WORKDIR /livox_mid_360/livox_mid_360_ws/
 
 # Copy the ros_entrypoint.sh script and set permissions
 COPY docker/ros_entrypoint.sh /ros_entrypoint.sh
