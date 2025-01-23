@@ -99,7 +99,7 @@ Example configuration:
 ```json  
 {  
   "lidar_summary_info": {  
-    "lidar_type": 8  
+    "lidar_type": 8 
   },  
   "MID360": {  
     "lidar_net_info": {  
@@ -110,13 +110,13 @@ Example configuration:
       "log_data_port": 56500  
     },  
     "host_net_info": {  
-      "cmd_data_ip": "192.168.1.5",  
+      "cmd_data_ip": "192.168.1.5",   # host ip (it can be revised)
       "cmd_data_port": 56101,  
-      "push_msg_ip": "192.168.1.5",  
+      "push_msg_ip": "192.168.1.5",   # host ip (it can be revised)
       "push_msg_port": 56201,  
-      "point_data_ip": "192.168.1.5",  
+      "point_data_ip": "192.168.1.5", # host ip (it can be revised)
       "point_data_port": 56301,  
-      "imu_data_ip": "192.168.1.5",  
+      "imu_data_ip": "192.168.1.5",   # host ip (it can be revised)
       "imu_data_port": 56401,  
       "log_data_ip": "",  
       "log_data_port": 56501  
@@ -124,7 +124,7 @@ Example configuration:
   },  
   "lidar_configs": [  
     {  
-      "ip": "192.168.1.12",  
+      "ip": "192.168.1.12",   # ip of the LiDAR you want to config
       "pcl_data_type": 1,  
       "pattern_mode": 0,  
       "extrinsic_parameter": {  
@@ -142,4 +142,3 @@ Example configuration:
  
 ### Notes:  
 - Update the placeholder IP addresses (`192.168.1.5` and `192.168.1.12`) with the actual static IP addresses of your host PC and Livox MID360.  
-- Keep the default `lidar_type` value unless explicitly required.  
