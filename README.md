@@ -5,7 +5,7 @@ This repository provides a comprehensive setup for mapping reconstruction using 
 ## Requirements  
 Ensure the following requirements are met before proceeding:  
 - **Ubuntu**: Version 20.04 or higher  
-- **Docker**: [Recommended Installation Guide](https://docs.docker.com/engine/install/)  
+- **Docker**: [Recommended Video Installation Guide](https://www.youtube.com/watch?v=SAMPOK_lazw&t=913s&ab_channel=ArticulatedRobotics)  
 - **Static IP Address of Host PC**: E.g., `192.168.1.10`  
 - **Static IP Address of Livox MID360**: E.g., `192.168.1.1`  
  
