@@ -31,4 +31,6 @@ if [[ $- == *i* ]]; then
     source ~/.bashrc
 fi
 
+echo "==============FAST-LIO MID 360 ROS2 Docker Env Ready================"
+
 exec "$@"
