@@ -16,6 +16,9 @@ echo "Starting '${CONTAINER_NAME}' container."
 SRC_PATH="$(pwd)/livox_mid_360/src"
 MOUNT_PATH="/livox_mid_360/livox_mid_360_ws/src"
 
+echo "Grant access '${CONTAINER_NAME}' container to video."
+xhost +local:root
+
 # Start the container. 
 docker run -it \
     --env="DISPLAY" \
