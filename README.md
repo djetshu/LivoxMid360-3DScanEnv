@@ -147,4 +147,11 @@ Example configuration:
 ```  
  
 ### Notes:  
-- Update the placeholder IP addresses (`192.168.1.5` and `192.168.1.12`) with the actual static IP addresses of your host PC and Livox MID360.  
+- Update the placeholder IP addresses (`192.168.1.5` and `192.168.1.12`) with the actual static IP addresses of your host PC and Livox MID360.
+
+## References
+This repository contains the following packages:
+- [Livox SDK2](https://github.com/Livox-SDK/Livox-SDK2)
+- [Livox Ros Driver](https://github.com/Livox-SDK/livox_ros_driver2)
+- [Fast LIO](https://github.com/hku-mars/FAST_LIO/tree/ROS2)
+
