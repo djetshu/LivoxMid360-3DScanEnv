@@ -67,8 +67,6 @@ RUN bash -c "source /opt/ros/humble/setup.bash && \
 WORKDIR /livox_mid_360/livox_mid_360_ws/
 RUN rosdep install --from-paths src --ignore-src -y
 
-
-
 # Update bashrc
 RUN echo 'source "/opt/ros/$ROS_DISTRO/setup.bash"' >> ~/.bashrc
 
