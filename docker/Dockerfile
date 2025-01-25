@@ -56,16 +56,18 @@ RUN mkdir -p build && cd build && \
     make -j$(nproc) && \
     make install
 
-# Install FAST-LIO
-WORKDIR /livox_mid_360/livox_mid_360_ws/
-RUN rosdep install --from-paths src --ignore-src -y
-
 # Install livox-ros-driver2
 WORKDIR /livox_mid_360/livox_mid_360_ws/src/livox_ros_driver2/
 
 # Source ROS environment and build the base workspace
 RUN bash -c "source /opt/ros/humble/setup.bash && \
     ./build.sh humble"
+    
+# Install FAST-LIO
+WORKDIR /livox_mid_360/livox_mid_360_ws/
+RUN rosdep install --from-paths src --ignore-src -y
+
+
 
 # Update bashrc
 RUN echo 'source "/opt/ros/$ROS_DISTRO/setup.bash"' >> ~/.bashrc
