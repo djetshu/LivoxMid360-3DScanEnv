@@ -4,3 +4,8 @@ livox_mid_360/src/rosbag/*
 
 # Allow .gitkeep file to be tracked inside the rosbag folder
 !livox_mid_360/src/rosbag/.gitkeep
+
+# Ignore build, log, and install folders anywhere in the repository
+**/build/
+**/log/
+**/install/
