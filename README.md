@@ -65,20 +65,27 @@ Before running, ensure all configurations are properly set (refer to [Set Up and
  
 Depending on your use case, you can launch different setups as described below:  
  
-### Run FastLIO with Livox MID360 ROS Driver  
+### 1. Run FastLIO with Livox MID360 ROS Driver  
  
-To perform mapping using FastLIO integrated with the Livox MID360:  
+To perform mapping using FastLIO integrated with the Livox MID360 in Real Time:  
  
-1. Execute the following command:  
+1.1. Execute the following command:  
    ```bash  
    ros2 launch fast_lio mapping_MID360.launch.py  
    ```  
+### 2. Run Only FastLIO  
  
-### Run Only the Livox MID360 ROS Driver  
+If you only need to run the FastLIO mapping (wih rosbags recordings):  
  
-If you only need to run the Livox MID360 ROS driver for data visualization or testing:  
+2.1. Launch the following command:  
+   ```bash  
+   ros2 launch fast_lio mapping.launch.py  
+   ```  
+### 3. Run Only the Livox MID360 ROS Driver  
  
-1. Launch the required nodes:  
+If you only need to run the Livox MID360 ROS driver for data visualization or testing (To corroborate communication of Lidar and PC):  
+ 
+3.1. Launch the required nodes:  
    ```bash
    # To show Data in Rviz2
    ros2 launch livox_ros_driver2 rviz_MID360_launch.py
@@ -86,7 +93,7 @@ If you only need to run the Livox MID360 ROS driver for data visualization or te
    ros2 launch livox_ros_driver2 msg_MID360_launch.py  
    ```  
  
-### Save Data in ROS Bags  
+### Record/Play Data in ROS Bags  
  
 To save LiDAR and IMU data in a ROS bag for later analysis or processing:  
  
@@ -96,6 +103,16 @@ To save LiDAR and IMU data in a ROS bag for later analysis or processing:
    source install/setup.bash
    # Record only /livox/imu and /livox/lidar topics
    ros2 bag record /livox/imu /livox/lidar -o /livox_mid_360/livox_mid_360_ws/src/rosbag/<name_of_bag>  
+   ```
+
+To play rosbags recording:
+
+2. Use the following command, specifying a name for the rosbag file:  
+   ```bash
+   # Source before playing topics
+   source install/setup.bash
+   # Play reosbag with only /livox/imu and /livox/lidar topics
+   ros2 bag play /livox_mid_360/livox_mid_360_ws/src/rosbag/<name_of_bag>  
    ```  
  
 ## Set Up and Configuration  
