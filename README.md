@@ -7,7 +7,7 @@ Ensure the following requirements are met before proceeding:
 - **Ubuntu**: Version 20.04 or higher  
 - **Docker**: [Recommended Video Installation Guide](https://www.youtube.com/watch?v=SAMPOK_lazw&t=913s&ab_channel=ArticulatedRobotics)  
 - **Static IP Address of Host PC**: E.g., `192.168.1.10`  
-- **Static IP Address of Livox MID360**: E.g., `192.168.1.1`  
+- **Static IP Address of Livox MID360**: E.g., `192.168.1.100`  
  
 ## Results  
 (Include screenshots, performance metrics, or descriptions of mapping results here.)  
@@ -91,7 +91,10 @@ If you only need to run the Livox MID360 ROS driver for data visualization or te
 To save LiDAR and IMU data in a ROS bag for later analysis or processing:  
  
 1. Use the following command, specifying a name for the output bag file:  
-   ```bash  
+   ```bash
+   # Source before recording topics
+   source install/setup.bash
+   # Record only /livox/imu and /livox/lidar topics
    ros2 bag record /livox/imu /livox/lidar -o /livox_mid_360/livox_mid_360_ws/src/rosbag/<name_of_bag>  
    ```  
  
@@ -116,13 +119,13 @@ Example configuration:
       "log_data_port": 56500  
     },  
     "host_net_info": {  
-      "cmd_data_ip": "192.168.1.5",   # host ip (it can be revised)
+      "cmd_data_ip": "192.168.1.10",   # host ip (it can be revised)
       "cmd_data_port": 56101,  
-      "push_msg_ip": "192.168.1.5",   # host ip (it can be revised)
+      "push_msg_ip": "192.168.1.10",   # host ip (it can be revised)
       "push_msg_port": 56201,  
-      "point_data_ip": "192.168.1.5", # host ip (it can be revised)
+      "point_data_ip": "192.168.1.10", # host ip (it can be revised)
       "point_data_port": 56301,  
-      "imu_data_ip": "192.168.1.5",   # host ip (it can be revised)
+      "imu_data_ip": "192.168.1.10",   # host ip (it can be revised)
       "imu_data_port": 56401,  
       "log_data_ip": "",  
       "log_data_port": 56501  
@@ -130,7 +133,7 @@ Example configuration:
   },  
   "lidar_configs": [  
     {  
-      "ip": "192.168.1.12",   # ip of the LiDAR you want to config
+      "ip": "192.168.1.100",   # ip of the LiDAR you want to config
       "pcl_data_type": 1,  
       "pattern_mode": 0,  
       "extrinsic_parameter": {  
@@ -146,8 +149,23 @@ Example configuration:
 }  
 ```  
  
-### Notes:  
+#### Notes:  
 - Update the placeholder IP addresses (`192.168.1.5` and `192.168.1.12`) with the actual static IP addresses of your host PC and Livox MID360.
+
+### Enable/Disable save .pcd file output of FastLio
+
+Modify the `mid360.yaml` file located at `livox_mid_360/src/FAST_LIO/config` to set up `pcd_save:pcd_save_en` to `true` or `false` for saving FastLIO output frames or not. The .pcd file will be stored at `livox_mid_360/src/FAST_LIO/PCD/`.
+
+```yaml
+   pcd_save:
+       pcd_save_en: false           # True -> .pcd file will be store at 'livox_mid_360/src/FAST_LIO/PCD/'
+       interval: -1                 # how many LiDAR frames saved in each pcd file; 
+                                    # -1 : all frames will be saved in ONE pcd file, may lead to memory crash when having too much frames. 
+```
+#### Notes:  
+- If this option is enabled ensure you have enough memory space.
+- To visualize the .pcd file, use the following command: `pcl_viewer <name_of_pcd_file.pcd>`
+- It is recommended to view this file on a high-performance PC to avoid lags.  
 
 ## References
 This repository contains the following packages:
