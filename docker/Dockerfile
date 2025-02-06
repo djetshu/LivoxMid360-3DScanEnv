@@ -31,6 +31,15 @@ RUN apt update && apt install -y \
     liburdfdom-tools \
     ros-humble-ament-cmake \
     && rm -rf /var/lib/apt/lists/*
+    
+# Install PCL Viewer and dependencies
+RUN apt update && apt install -y \
+    build-essential \
+    cmake \
+    libpcl-dev \
+    pcl-tools \
+    iputils-ping \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set up environment variables for Gazebo
 ENV GAZEBO_MODEL_PATH=/usr/share/gazebo-11/models:$GAZEBO_MODEL_PATH \
