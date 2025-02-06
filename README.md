@@ -9,9 +9,6 @@ Ensure the following requirements are met before proceeding:
 - **Static IP Address of Host PC**: E.g., `192.168.1.10`  
 - **Static IP Address of Livox MID360**: E.g., `192.168.1.100`  
  
-## Results  
-(Include screenshots, performance metrics, or descriptions of mapping results here.)  
- 
 ## Installation & Quick Run of Docker Environment  
  
 1. **Clone the Repository**  
@@ -69,23 +66,25 @@ Depending on your use case, you can launch different setups as described below:
  
 To perform mapping using FastLIO integrated with the Livox MID360 in Real Time:  
  
-1.1. Execute the following command:  
+1. Execute the following command:  
    ```bash  
    ros2 launch fast_lio mapping_MID360.launch.py  
-   ```  
+   ```
+
 ### 2. Run Only FastLIO  
  
 If you only need to run the FastLIO mapping (wih rosbags recordings):  
  
-2.1. Launch the following command:  
+2. Launch the following command:  
    ```bash  
    ros2 launch fast_lio mapping.launch.py  
-   ```  
+   ```
+
 ### 3. Run Only the Livox MID360 ROS Driver  
  
 If you only need to run the Livox MID360 ROS driver for data visualization or testing (To corroborate communication of Lidar and PC):  
  
-3.1. Launch the required nodes:  
+3. Launch the required nodes:  
    ```bash
    # To show Data in Rviz2
    ros2 launch livox_ros_driver2 rviz_MID360_launch.py
