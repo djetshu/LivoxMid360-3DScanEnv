@@ -180,8 +180,32 @@ Modify the `mid360.yaml` file located at `livox_mid_360/src/FAST_LIO/config` to 
 ```
 #### Notes:  
 - If this option is enabled ensure you have enough memory space.
-- To visualize the .pcd file, use the following command: `pcl_viewer <name_of_pcd_file.pcd>`
 - It is recommended to view this file on a high-performance PC to avoid lags.  
+
+### Visualization of PCD file (Recommended)
+
+To visualize the .pcd file, use the following command: 
+
+```bash
+pcl_viewer src/FAST_LIO/PCD/<name_of_pcd_file.pcd>
+```
+
+*Tips for pcl_viewer:*
+- Change what to visualize/color by pressing keyboard 1,2,3,4,5 when pcl_viewer is running. 
+```
+    1 is all random
+    2 is X values
+    3 is Y values
+    4 is Z values
+    5 is intensity
+```
+### Fast conversion PCD to PLY format
+
+To convert the .pcd file into a .ply file, use the following command: 
+
+```bash
+pcl_pcd2ply src/FAST_LIO/PCD/<name_of_pcd_file.pcd> src/FAST_LIO/PCD/<name_of_ply_file.pcd> -format 0  # 0 = ASCII, 1 = Binary
+```
 
 ## References
 This repository contains the following packages:
